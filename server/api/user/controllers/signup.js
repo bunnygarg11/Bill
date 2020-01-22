@@ -73,12 +73,15 @@ const pool = require("./../../../config/database");
 const bcryptjs = require("bcryptjs");
 var _ = require("lodash");
 const {check,validationResult}=require("express-validator")
+const schema=require("../../../middlewares/validator")
 
 const signup = async (req, res, next) => {
   try {
-    const errors=validationResult(req)
-    if(!errors.isEmpty()){
-        return res.status(400).json({errors:errors.array()})
+   
+    const {error}=schema.validate(req.body,{aboutEarly:false})
+    if(error){
+      console.log(error)
+      return res.send()
     }
     let {
       personalDetails,

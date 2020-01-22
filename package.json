@@ -4,15 +4,16 @@
   "description": "",
   "main": "server/app.js",
   "scripts": {
-    "start": "NODE_ENV='development' nodemon server/app.js",
+    "start": "nodemon server/app.js",
     "prod": "NODE_ENV='production' node server/app.js",
-    "dev": "NODE_ENV='development'  node server/app.js",
+    "dev": "NODE_ENV='development'  nodemon server/app.js",
     "test": "mocha || true "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "bcryptjs": "^2.4.3",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
