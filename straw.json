@@ -1,0 +1,153 @@
+({
+    "type": "signup request",
+    "personalDetails": {
+    "firstName": "Pankaj",
+    "lastName": "Pandey",
+    "contactNumber": 9871498577,
+    "userName": "Pankaj@9871",
+    "email": "pankaj@mail.vinove.com",
+    "password": "Pankaj@9871",
+    "confirmPassword": "Pankaj@9871"
+    },
+    "shopDetails": {
+    "shopName": "Croma",
+    "addressLine1": "noida",
+    "addressLine2": "sector4",
+    "countryId": "4324",
+    "stateId": "534",
+    "cityId": "123",
+    "pincode": 201301,
+    "isGstNumber": "yes/no",
+    "legalName": "abx",
+    "gstNumber": "131214214",
+    "tradeName": "xyz",
+    "website": "xyz.com",
+    "email": "pankaj.pandey1@mail.vinove.com"
+    },
+    "paymentDetails": {
+    "shopStatus": "Portnership/Private Limited/Propertiership",
+    "shopType": "Stand Alone Store/Local chain store/National chain store",
+    "paymentMethod": "cash/credit/Debit/Digital Wallet",
+    "financeFacility": "provided by us/Tie up with the finance company/banck/No finance facility",
+    "isSellOnline": "yes/no",
+    "onlineStore": [
+    "amazonId",
+    "flipkartId",
+    "paytmId",
+    "snapdealId",
+    "othersId"
+    ]
+    },
+    "socialId": "23143",
+    "registerType": "Custom/Google/Facebook"
+    },
+    {
+    "type": "signup response",
+    "code": 200,
+    "message": "You are successfully registered",
+    "isRegister": "Partial/Complete",
+    "userData": {
+    "userToken": "adv35dfgcvb",
+    "userId": "",
+    "firstName": "Pankaj",
+    "lastName": "Pandey",
+    "email": "pankaj@mail.vinove.com",
+    "userImage": ""
+    }
+    },
+    {
+    "type": "login request",
+    "email": "pankaj.pandey@mail.vinove.com",
+    "password": "123456",
+    "deviceToken": "fdfgjfghfghf132sidsko",
+    "deviceType": "web/iOS/Android",
+    "loginType": "custom/Google/Facebook",
+    "socialId": "1223232"
+    },
+    {
+    "type": "login response",
+    "response": {
+    "code": 200,
+    "message": "login successfully",
+    "isRegister": "Partial/Otp verification pending/Complete(1/2/3)",
+    "userData": {
+    "userToken": "adv35dfgcvb",
+    "userId": 121,
+    "firstName": "Pankaj",
+    "lastName": "Pandey",
+    "email": "pankaj@mail.vinove.com",
+    "userImage": ""
+    }
+    }
+    },
+    {
+    "type": "login error",
+    "response": { "code": "201/202/400/etc", "message": "Proper Error message" }
+    },
+    { "type": "forgot request", "email": "pankaj.pandey@mail.vinove.com" },
+    {
+    "type": "forgot response",
+    "response": {
+    "code": 200,
+    "message": "Mail has been sent your registered email .Please check and reset your password"
+    }
+    },
+    {
+    "type": "forgot error",
+    "response": { "code": "201/202/400/etc", "message": "Proper Error message" }
+    },
+    {
+    "type": "categorylist response",
+    "response": {
+    "code": 200,
+    "categoryList": [
+    { "categoryId": 1, "categoryName": "It" },
+    { "categoryId": 2, "categoryName": "TeleCommunication" }
+    ]
+    }
+    },
+    {
+    "type": "categorylist error",
+    "response": { "code": "201/202/400/etc", "message": "Proper Error message" }
+    },
+    {
+    "type": "select category request",
+    "selectedCategory": [
+    { "categoryId": 1, "categoryName": "It" },
+    { "categoryId": 2, "categoryName": "telecom" },
+    { "categoryId": 3, "categoryName": "Battery and inverter" }
+    ]
+    },
+    {
+    "type": "select category response",
+    "response": {
+    "code": 200,
+    "message": "Otp has been sent on registered mobile number",
+    "isRegister": "Partial/Otp verification pending/Complete(1/2/3)"
+    }
+    },
+    {
+    "type": "select category error",
+    "response": { "code": "201/202/400/etc", "message": "Proper Error message" }
+    },
+    { "type": "otp request", "otp": "1235" },
+    {
+    "type": "otp response",
+    "response": {
+    "code": 200,
+    "message": "successfully",
+    "isRegister": "Partial/Otp verification pending/Complete(1/2/3)",
+    "userData": {
+    "userToken": "adv35dfgcvb",
+    "userId": 121,
+    "firstName": "Pankaj",
+    "lastName": "Pandey",
+    "email": "pankaj@mail.vinove.com",
+    "userImage": ""
+    }
+    }
+    },
+    {
+    "type": "otp error",
+    "response": { "code": "201/202/400/etc", "message": "Proper Error message" }
+    })
