@@ -9,7 +9,7 @@ const verifyOtp = async (req, res) => {
     const otp = req.body.otp;
     const id = req.id;
     const userData = await pool.query(
-      `SELECT contactNumber,userId,firstName,lastName,userImage,email FROM mbillUsers WHERE userId= '${id}'`
+      `SELECT contactNumber,userId,firstName,lastName,userImage,email,userToken FROM mbillUsers WHERE userId= '${id}'`
     );
 
     sendOtp.verify(userData[0].contactNumber, otp, async function(error, data) {
