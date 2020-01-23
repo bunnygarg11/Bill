@@ -8,6 +8,7 @@ const changePassword = async (req, res, next) => {
         let { currentPassword, newPassword, confirmPassword } = req.body
         const user = await pool.query(`SELECT * FROM mbillUsers WHERE userId= '${req.id}'`)
         if (user.length === 0) {
+            
             return Services._handleError(res, "Invalid credentials");
         }
 

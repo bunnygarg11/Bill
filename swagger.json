@@ -9,7 +9,7 @@
       "url": ""
     }
   },
-  "host": "mbill.n1.iworklab.com:3210",
+  "host": "localhost:3210",
   "basePath": "/",
   "tags": [
     {

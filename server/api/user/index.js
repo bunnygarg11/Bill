@@ -10,6 +10,7 @@ const { forgotPassword } = require('./controllers/forgotPassword');
 const { resetPassword } = require('./controllers/resetPassword');
 const { verify } = require("./controllers/verifyPassword")
 const { verifyEmail } = require("./controllers/verifyEmail")
+const { verifyOtp } = require("./controllers/verifyOtp")
 
 
 router.get("/verifyemail/:token", verifyEmail)
@@ -19,4 +20,5 @@ router.post("/resetPassword", resetPassword)
 router.post("/changePassword",userAuth, changePassword)
 router.post("/login", login)
 router.post("/forgotPassword", forgotPassword)
+router.post("/otpVerification",userAuth,verifyOtp )
 module.exports = router;

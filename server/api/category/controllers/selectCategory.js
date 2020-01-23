@@ -3,7 +3,6 @@ const SendOtp = require("sendotp");
 
 var _ = require("lodash");
 const pool = require("./../../../config/database");
-const SendOTP = require("../../../service/sendSms");
 const selectCategory = async (req, res, next) => {
   try {
     const id = req.id;
@@ -17,49 +16,38 @@ const selectCategory = async (req, res, next) => {
       `SELECT contactNumber FROM mbillUsers WHERE userId= '${id}'`
     );
 
-    // const data = SendOTP.sendOtp(contactNumber);
     let msg = {};
 
     const sendOtp = new SendOtp(
       "313130AUZ6pZHTJ2nk5e1dac4aP1",
-      "Otp for your order is {{otp}}, please only share it with MILAN"
+      "Otp for your order is {{otp}}, please do not share it with anyone"
     );
-    sendOtp.setOtpExpiry('90');
-    sendOtp.send(contactNumber[0].contactNumber, "", async function(error, data) {
-      // console.log(data);
-      if(error) throw error
-      // return data
+    sendOtp.setOtpExpiry("90");
+    sendOtp.send(contactNumber[0].contactNumber, "", async function(
+      error,
+      data
+    ) {
+      if (error) throw error;
+
       if (data.type == "success") {
+        msg.isRegister = "Otp verification pending(2)";
+
         await pool.query(
           `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
         );
-        msg = {
-          isRegister: "Otp verification pending(2)"
-        };
       } else {
         msg = {
           isRegister: "partial(1)"
         };
       }
-    })
-    // if (data.type == "success") {
-    //   await pool.query(
-    //     `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
-    //   );
-    //   msg = {
-    //     isRegister: "Otp verification pending(2)"
-    //   };
-    // } else {
-    //   msg = {
-    //     isRegister: "partial(1)"
-    //   };
-    // }
 
-    Services._response(
-      res,
-      msg,
-      "Otp has been sent on registered mobile number"
-    );
+      Services._response(
+        res,
+        msg,
+        "Otp has been sent on registered mobile number"
+      );
+    });
+    
   } catch (error) {
     Services._handleError(res, error.message);
   }

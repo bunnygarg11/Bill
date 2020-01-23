@@ -1,6 +1,8 @@
 var Services = require("./../../../service/network");
-const SendOTP = require("../../../service/sendSms");
 const pool = require("./../../../config/database");
+const SendOtp = require("sendotp");
+const sendOtp = new SendOtp("313130AUZ6pZHTJ2nk5e1dac4aP1");
+
 var _ = require("lodash");
 const verifyOtp = async (req, res) => {
   try {
@@ -9,27 +11,29 @@ const verifyOtp = async (req, res) => {
     const userData = await pool.query(
       `SELECT contactNumber,userId,firstName,lastName,userImage,email FROM mbillUsers WHERE userId= '${id}'`
     );
-    const data = SendOTP.verifyOTP(userData.contactNumber, otp);
 
-    if (data.type == "success") {
-      await pool.query(
-        `UPDATE mbillUsers SET isRegister=3 WHERE userId="${id}"`
-      );
-      msg = {
-        isRegister: "Complete(3)",
-        userData: userData
-      };
-    } else {
-      await pool.query(
-        `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
-      );
-      msg = {
-        isRegister: "Otp verification pending(2)",
-        userData: userData
-      };
-    }
+    sendOtp.verify(userData[0].contactNumber, otp, async function(error, data) {
+      if (error) throw error;
+      if (data.type == "success") {
+        await pool.query(
+          `UPDATE mbillUsers SET isRegister=3 WHERE userId="${id}"`
+        );
+        msg = {
+          isRegister: "Complete(3)",
+          userData: userData
+        };
+      } else {
+        await pool.query(
+          `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
+        );
+        msg = {
+          isRegister: "Otp verification pending(2)",
+          userData: userData
+        };
+      }
 
-    Services._response(res, msg, "Successfully");
+      Services._response(res, msg, "Successfully");
+    });
   } catch (error) {
     Services._handleError(res, error.message);
   }
