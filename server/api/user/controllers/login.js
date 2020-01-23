@@ -37,7 +37,7 @@ const login = async (req, res, next) => {
       }
 
       const userData = await pool.query(
-        `SELECT userId,firstName,lastName,userImage,email,isRegister FROM mbillUsers WHERE email='${email}'`
+        `SELECT userId,firstName,lastName,userImage,email,isRegister FROM mbillUsers WHERE email='${email}' OR userName='${userName}'`
       );
       const userToken = await jwt.sign(
         { userData: userData[0].userId },
