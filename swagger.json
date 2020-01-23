@@ -1,310 +1,358 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "M BILL",
-        "description": "MBILL Application API Documentations",
-        "license": {
-            "name": "Home",
-            "url": ""
-        }
-    },
-    "host": "mbill.n1.iworklab.com:3210",
-    "basePath": "/",
-    "tags": [
-        {
-            "name": "USER",
-            "description": ""
-        },
-        {
-            "name": "DISTRIBUTOR",
-            "description": ""
-        }
-    ],
-    "securityDefinitions": {
-        "jwt": {
-            "description": "The following syntax of jwt token must be passed in below input box 'Bearer token_return_by_api_auth'",
-            "type": "apiKey",
-            "name": "x-auth-token",
-            "in": "header"
-        }
-    },
-    "schemes": [
-        "http",
-        "https"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/api/user/login": {
-            "post": {
-                "summary": "Login an User",
-                "tags": [
-                    "USER"
-                ],
-                "parameters": [
-                    {
-                        "name": "User login credentials",
-                        "in": "body",
-                        "description": "Login Employee",
-                        "schema": {
-                            "$ref": "#/definitions/LOGIN_CREDENTIALS"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/api/user/forgotPassword": {
-            "post": {
-                "summary": "Forgot Password",
-                "tags": [
-                    "USER"
-                ],
-                "parameters": [
-                    {
-                        "name": "Password forgotten",
-                        "in": "body",
-                        "description": "Forget Password",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "email": {
-                                    "type": "string",
-                                    "required": true,
-                                    "trim": true
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/api/user/changePassword": {
-            "post": {
-                "summary": "Change Password",
-                "tags": [
-                    "USER"
-                ],
-                "parameters": [
-                    {
-                        "name": "User login credentials",
-                        "in": "body",
-                        "description": "Change Password",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "currentPassword": {
-                                    "type": "string",
-                                    "required": true,
-                                    "trim": true
-                                },
-                                "newPassword": {
-                                    "type": "string",
-                                    "required": true,
-                                    "trim": true
-                                },
-                                "confirmPassword": {
-                                    "type": "string",
-                                    "required": true,
-                                    "trim": true
-                                }
-                            }
-                        }
-                    }
-                ],
-                "security": [
-                    {
-                        "jwt": []
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/api/user/register": {
-            "post": {
-                "summary": "Create user in the system",
-                "tags": [
-                    "USER"
-                ],
-                "parameters": [
-                    {
-                        "name": "Basic User Information",
-                        "in": "body",
-                        "description": "Create User",
-                        "schema": {
-                            "$ref": "#/definitions/USER_MODEL"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/api/distributor/addDistributor": {
-            "post": {
-                "summary": "Create distributor in the system",
-                "tags": [
-                    "DISTRIBUTOR"
-                ],
-                "parameters": [
-                    {
-                        "name": "Basic Distributor Information",
-                        "in": "body",
-                        "description": "Create Distributor",
-                        "schema": {
-                            "$ref": "#/definitions/DISTRIBUTOR_MODEL"
-                        }
-                    }
-                ],
-                "security": [
-                    {
-                        "jwt": []
-                    }
-                ],
-                "responses": {}
-            }
-        }
-    },
-    "definitions": {
-        "LOGIN_CREDENTIALS": {
-            "properties": {
-                "userName": {
-                    "type": "string",
-                    "example": "test"
-                },
-                "password": {
-                    "type": "string",
-                    "example": "test"
-                }
-            }
-        },
-        "USER_MODEL": {
-            "type":"object",
-            "properties": {
-                "personalDetails": {
-                    "type":"object",
-                    "example":
-                        {"firstName":{
-                            "type": "string",
-                            "example": "Pankaj"
-                        },
-                        "lastName": {
-                            "type": "string",
-                            "example": "Pandey"
-                        },
-                        "contactNumber": {
-                            "type": "string",
-                            "example": "9876543210"
-                        },
-                        "userName": {
-                            "type": "string",
-                            "example":"Pankaj@9871"
-                        },
-                        "password": {
-                            "type": "string",
-                            "example": "Pankaj@9871"
-                        },
-                        "confirmPassword": {
-                            "type": "string",
-                            "example": "Pankaj@9871"
-                        }
-                    }
-                    },
-                    "shopDetails":{
-                        "type":"object",
-                        "example":
-                       { "addressLine1": {
-                            "type": "string",
-                            "example": "noida"
-                        },
-                        "addressLine2": {
-                            "type": "string",
-                            "example": "sector4"
-                        },
-                        "countryId": {
-                            "type": "string",
-                            "example": "4324"
-                        },
-                        "stateId":{
-                            "type": "string",
-                            "example": "4324"
-                        },
-                        "pincode":{
-                            "type": "number",
-                            "example": 4324546
-                        },
-                        "gstNumber": {
-                            "type": "string",
-                            "example": "4324"
-                        },
-                        "email":{
-                            "type": "string",
-                            "example": "pankaj.pandey1@mail.vinove.com"
-                    }}
-                },
-                "paymentDetails":{
-                    "type":"object",
-                    "example":
-                       { "shopStatus": {
-                            "type": "string",
-                            "example":"Portnership/Private Limited/Propertiership"
-                        },
-                        "paymentMethod":{
-                            "type": "string",
-                            "example": "cash/credit/Debit/Digital Wallet"
-                        }, 
-                        "financeFacility":{
-                            "type": "string",
-                            "example": "Cash/Credit/Debit"
-                        }
-                    }
-                },
-                "socialId": {
-                    "type": "string",
-                    "example": "23143"
-                },
-                "registerType": {
-                    "type": "string",
-                    "example": "Custom/Google/Facebook"
-                }
-            }
-        },
-        "DISTRIBUTOR_MODEL": {
-            "properties": {
-                "distributorName": {
-                    "type": "string",
-                    "example": "Pankaj"
-                },
-                "address": {
-                    "type": "string",
-                    "example": "Delhi"
-                },
-                "city": {
-                    "type": "string",
-                    "example": "Noida"
-                },
-                "state": {
-                    "type": "string",
-                    "example": "UP"
-                },
-                "pinCode": {
-                    "type": "string",
-                    "example": "2213"
-                },
-                "distributorGstNumber": {
-                    "type": "number",
-                    "example": 3212
-                },
-                "distributorMobileNo": {
-                    "type": "number",
-                    "example": 856456546
-                }
-            }
-        }
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "M BILL",
+    "description": "MBILL Application API Documentations",
+    "license": {
+      "name": "Home",
+      "url": ""
     }
+  },
+  "host": "localhost:3210",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "USER",
+      "description": ""
+    },
+    {
+      "name": "DISTRIBUTOR",
+      "description": ""
+    }
+  ],
+  "securityDefinitions": {
+    "jwt": {
+      "description": "The following syntax of jwt token must be passed in below input box 'Bearer token_return_by_api_auth'",
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "in": "header"
+    }
+  },
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "summary": "Login an User",
+        "tags": ["USER"],
+        "parameters": [
+          {
+            "name": "User login credentials",
+            "in": "body",
+            "description": "Login Employee",
+            "schema": {
+              "$ref": "#/definitions/LOGIN_CREDENTIALS"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/forgotPassword": {
+      "post": {
+        "summary": "Forgot Password",
+        "tags": ["USER"],
+        "parameters": [
+          {
+            "name": "Password forgotten",
+            "in": "body",
+            "description": "Forget Password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "required": true,
+                  "trim": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/changePassword": {
+      "post": {
+        "summary": "Change Password",
+        "tags": ["USER"],
+        "parameters": [
+          {
+            "name": "User login credentials",
+            "in": "body",
+            "description": "Change Password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "currentPassword": {
+                  "type": "string",
+                  "required": true,
+                  "trim": true
+                },
+                "newPassword": {
+                  "type": "string",
+                  "required": true,
+                  "trim": true
+                },
+                "confirmPassword": {
+                  "type": "string",
+                  "required": true,
+                  "trim": true
+                }
+              }
+            }
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/selectCategory": {
+        "post": {
+          "summary": "Select Category",
+          "tags": ["USER"],
+          "parameters": [
+            {
+              "name": "Select Category",
+              "in": "body",
+              "description": "Otp sending",
+              "schema": {
+                "$ref": "#/definitions/CATEGORY"
+              }
+            }
+          ],
+          "security": [
+            {
+              "jwt": []
+            }
+          ],
+          "responses": {}
+        }
+      },
+    "/api/user/register": {
+      "post": {
+        "summary": "Create user in the system",
+        "tags": ["USER"],
+        "parameters": [
+          {
+            "name": "Basic User Information",
+            "in": "body",
+            "description": "Create User",
+            "schema": {
+              "$ref": "#/definitions/USER_MODEL"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/distributor/addDistributor": {
+      "post": {
+        "summary": "Create distributor in the system",
+        "tags": ["DISTRIBUTOR"],
+        "parameters": [
+          {
+            "name": "Basic Distributor Information",
+            "in": "body",
+            "description": "Create Distributor",
+            "schema": {
+              "$ref": "#/definitions/DISTRIBUTOR_MODEL"
+            }
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "LOGIN_CREDENTIALS": {
+      "properties": {
+        "userName": {
+          "type": "string",
+          "example": "test"
+        },
+        "password": {
+          "type": "string",
+          "example": "test"
+        }
+      }
+    },
+    "USER_MODEL": {
+      "type": "object",
+      "properties": {
+        "personalDetails": {
+          "type": "object",
+          "example": {
+            "firstName": {
+              "type": "string",
+              "example": "Pankaj"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Pandey"
+            },
+            "contactNumber": {
+              "type": "string",
+              "example": "9876543210"
+            },
+            "userName": {
+              "type": "string",
+              "example": "Pankaj@9871"
+            },
+            "email": {
+              "type": "string",
+              "example": "pankaj.pandey1@mail.vinove.com"
+            },
+            "password": {
+              "type": "string",
+              "example": "Pankaj@9871"
+            }
+          }
+        },
+        "shopDetails": {
+          "type": "object",
+          "example": {
+            "shopName/tradeName": {
+              "type": "string",
+              "example": "Croma"
+            },
+            "addressLine1": {
+              "type": "string",
+              "example": "noida"
+            },
+            "addressLine2": {
+              "type": "string",
+              "example": "sector4"
+            },
+            "countryId": {
+              "type": "string",
+              "example": "4324"
+            },
+            "stateId": {
+              "type": "string",
+              "example": "4324"
+            },
+            "pincode": {
+              "type": "number",
+              "example": 4324546
+            },
+            "isGstNumber": {
+              "type": "boolean",
+              "example": "yes"
+            },
+            "legalName": {
+              "type": "string",
+              "example": "abx"
+            },
+            "gstNumber": {
+              "type": "string",
+              "example": "4324"
+            },
+            "website": {
+              "type": "string",
+              "example": "xyz.com"
+            }
+          }
+        },
+        "paymentDetails": {
+          "type": "object",
+          "example": {
+            "shopStatus": {
+              "type": "string",
+              "example": "Portnership/Private Limited/Propertiership"
+            },
+            "shopType": {
+              "type": "string",
+              "example": "Stand Alone Store/Local chain store"
+            },
+            "paymentMethod": {
+              "type": "string",
+              "example": "cash/credit/Debit/Digital Wallet"
+            },
+            "financeFacility": {
+              "type": "string",
+              "example": "Cash/Credit/Debit"
+            },
+            "isSellOnline": {
+              "type": "boolean",
+              "example": "yes"
+            },
+            "onlineStore": {
+              "type": "json",
+              "example": ["amazonId", "flipkartId", "paytmId"]
+            }
+          }
+        },
+        "socialId": {
+          "type": "string",
+          "example": "23143"
+        },
+        "registerType": {
+          "type": "string",
+          "example": "Custom/Google/Facebook"
+        }
+      }
+    },
+    "CATEGORY": {
+        "type": "object",
+        "properties": {
+          "selectedCategory": {
+            "type": "object",
+            "example": {
+              "categoryId": {
+                "type": "number",
+                "example": 23
+              },
+              "categoryName": {
+                "type": "string",
+                "example": "IT"
+              }
+            }
+          }
+        }
+      },
+    "DISTRIBUTOR_MODEL": {
+      "properties": {
+        "distributorName": {
+          "type": "string",
+          "example": "Pankaj"
+        },
+        "address": {
+          "type": "string",
+          "example": "Delhi"
+        },
+        "city": {
+          "type": "string",
+          "example": "Noida"
+        },
+        "state": {
+          "type": "string",
+          "example": "UP"
+        },
+        "pinCode": {
+          "type": "string",
+          "example": "2213"
+        },
+        "distributorGstNumber": {
+          "type": "number",
+          "example": 3212
+        },
+        "distributorMobileNo": {
+          "type": "number",
+          "example": 856456546
+        }
+      }
+    }
+  }
 }
