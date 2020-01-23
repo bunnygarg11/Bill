@@ -1,4 +1,6 @@
 var Services = require("./../../../service/network");
+const SendOtp = require("sendotp");
+
 var _ = require("lodash");
 const pool = require("./../../../config/database");
 const SendOTP = require("../../../service/sendSms");
@@ -15,20 +17,43 @@ const selectCategory = async (req, res, next) => {
       `SELECT contactNumber FROM mbillUsers WHERE userId= '${id}'`
     );
 
-    const data = SendOTP.sendOtp(contactNumber);
+    // const data = SendOTP.sendOtp(contactNumber);
     let msg = {};
-    if (data.type == "success") {
-      await pool.query(
-        `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
-      );
-      msg = {
-        isRegister: "Otp verification pending(2)"
-      };
-    } else {
-      msg = {
-        isRegister: "partial(1)"
-      };
-    }
+
+    const sendOtp = new SendOtp(
+      "313130AUZ6pZHTJ2nk5e1dac4aP1",
+      "Otp for your order is {{otp}}, please only share it with MILAN"
+    );
+    sendOtp.setOtpExpiry('90');
+    sendOtp.send(contactNumber[0].contactNumber, "", async function(error, data) {
+      // console.log(data);
+      if(error) throw error
+      // return data
+      if (data.type == "success") {
+        await pool.query(
+          `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
+        );
+        msg = {
+          isRegister: "Otp verification pending(2)"
+        };
+      } else {
+        msg = {
+          isRegister: "partial(1)"
+        };
+      }
+    })
+    // if (data.type == "success") {
+    //   await pool.query(
+    //     `UPDATE mbillUsers SET isRegister=2 WHERE userId="${id}"`
+    //   );
+    //   msg = {
+    //     isRegister: "Otp verification pending(2)"
+    //   };
+    // } else {
+    //   msg = {
+    //     isRegister: "partial(1)"
+    //   };
+    // }
 
     Services._response(
       res,

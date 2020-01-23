@@ -21,9 +21,9 @@
       "description": ""
     },
     {
-        "name": "CATEGORIES",
-        "description": ""
-     }
+      "name": "CATEGORIES",
+      "description": ""
+    }
   ],
   "securityDefinitions": {
     "jwt": {
@@ -118,56 +118,56 @@
       }
     },
     "/api/category/selectCategory": {
-        "post": {
-          "summary": "Select Category",
-          "tags": ["CATEGORIES"],
-          "parameters": [
-            {
-              "name": "Select Category",
-              "in": "body",
-              "description": "Otp",
-              "schema": {
-                "$ref": "#/definitions/SELECTED_CATEGORY"
-              }
+      "post": {
+        "summary": "Select Category",
+        "tags": ["CATEGORIES"],
+        "parameters": [
+          {
+            "name": "Select Category",
+            "in": "body",
+            "description": "Otp",
+            "schema": {
+              "$ref": "#/definitions/SELECTED_CATEGORY"
             }
-          ],
-          "security": [
-            {
-              "jwt": []
-            }
-          ],
-          "responses": {}
-        }
-      },
-      "/api/user/otpVerification": {
-        "post": {
-          "summary": "OTP VERIFICATION",
-          "tags": ["USER"],
-          "parameters": [
-            {
-              "name": "Verify OTP",
-              "in": "body",
-              "description": "Otp Verify",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "otp": {
-                    "type": "string",
-                    "required": true,
-                    "example":"2433"
-                  }
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/otpVerification": {
+      "post": {
+        "summary": "OTP VERIFICATION",
+        "tags": ["USER"],
+        "parameters": [
+          {
+            "name": "Verify OTP",
+            "in": "body",
+            "description": "Otp Verify",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "otp": {
+                  "type": "string",
+                  "required": true,
+                  "example": "2433"
                 }
               }
             }
-          ],
-          "security": [
-            {
-              "jwt": []
-            }
-          ],
-          "responses": {}
-        }
-      },
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/api/user/register": {
       "post": {
         "summary": "Create user in the system",
@@ -211,6 +211,10 @@
   "definitions": {
     "LOGIN_CREDENTIALS": {
       "properties": {
+        "email": {
+          "type": "string",
+          "example": "test"
+        },
         "userName": {
           "type": "string",
           "example": "test"
@@ -218,6 +222,22 @@
         "password": {
           "type": "string",
           "example": "test"
+        },
+        "deviceType": {
+          "type": "string",
+          "example": "Android"
+        },
+        "deviceToken": {
+          "type": "string",
+          "example": "fvghsdvfh2345"
+        },
+        "loginType": {
+          "type": "string",
+          "example": "Custom"
+        },
+        "socialId": {
+          "type": "number",
+          "example": 354
         }
       }
     },
@@ -338,10 +358,11 @@
       }
     },
     "SELECTED_CATEGORY": {
-        "properties": {
-          "selectedCategory":{
-            "type": "object",
-            "example": [{
+      "properties": {
+        "selectedCategory": {
+          "type": "object",
+          "example": [
+            {
               "categoryId": {
                 "type": "number",
                 "example": 23
@@ -350,28 +371,31 @@
                 "type": "string",
                 "example": "IT"
               }
-            },{
-                "categoryId": {
-                  "type": "number",
-                  "example": 23
-                },
-                "categoryName": {
-                  "type": "string",
-                  "example": "IT"
-                }
-              },{
-                "categoryId": {
-                  "type": "number",
-                  "example": 23
-                },
-                "categoryName": {
-                  "type": "string",
-                  "example": "IT"
-                }
-              }]
-          }
+            },
+            {
+              "categoryId": {
+                "type": "number",
+                "example": 23
+              },
+              "categoryName": {
+                "type": "string",
+                "example": "IT"
+              }
+            },
+            {
+              "categoryId": {
+                "type": "number",
+                "example": 23
+              },
+              "categoryName": {
+                "type": "string",
+                "example": "IT"
+              }
+            }
+          ]
         }
-      },
+      }
+    },
     "DISTRIBUTOR_MODEL": {
       "properties": {
         "distributorName": {
