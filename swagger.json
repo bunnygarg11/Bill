@@ -117,6 +117,36 @@
         "responses": {}
       }
     },
+    "/api/user/gstValidator": {
+      "post": {
+        "summary": "Validate Gst",
+        "tags": [
+          "USER"
+        ],
+        "parameters": [
+          {
+            "name": "GST validation",
+            "in": "body",
+            "description": "GST validate",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gstNumber": {
+                  "type": "string",
+                  "example":"06FDDPK8391H1Z7"
+                }
+              }
+            }
+          }
+        ],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/api/category/selectCategory": {
       "post": {
         "summary": "Select Category",
@@ -141,7 +171,7 @@
     },
     "/api/user/otpVerification": {
       "post": {
-        "summary": "OTP VERIFICATION",
+        "summary": "OTP Verification",
         "tags": ["USER"],
         "parameters": [
           {
