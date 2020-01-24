@@ -11,6 +11,7 @@ const { resetPassword } = require('./controllers/resetPassword');
 const { verify } = require("./controllers/verifyPassword")
 const { verifyEmail } = require("./controllers/verifyEmail")
 const { verifyOtp } = require("./controllers/verifyOtp")
+const {gstValid} = require("./controllers/gstValidator")
 
 
 router.get("/verifyemail/:token", verifyEmail)
@@ -21,4 +22,5 @@ router.post("/changePassword",userAuth, changePassword)
 router.post("/login", login)
 router.post("/forgotPassword", forgotPassword)
 router.post("/otpVerification",userAuth,verifyOtp )
+router.post("/gstValidator",userAuth,gstValid )
 module.exports = router;
