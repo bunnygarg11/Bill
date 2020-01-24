@@ -17,8 +17,8 @@ const forgotPassword = async (req, res, next) => {
       process.env.SECRET_KEY,
       { expiresIn: 36000 }
     );
-    console.log(`Click on the link http://localhost:${process.env.PORT ||
-    3210}/api/user/verify/${token}`);
+    // console.log(`Click on the link http://localhost:${process.env.PORT ||
+    // 3210}/api/user/verify/${token}`);
     
 
     const userEmail = user[0].email;

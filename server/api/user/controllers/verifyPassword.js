@@ -21,7 +21,7 @@ const verify = async (req, res, next) => {
 
     res.cookie("token", req.params.token);
 
-    return res.redirect(`http://localhost:3210/api/user/resetPassword`);
+    return res.redirect(`http://localhost:3000/api/user/resetPassword`);
   } catch (error) {
     return Services._handleError(res, error);
   }

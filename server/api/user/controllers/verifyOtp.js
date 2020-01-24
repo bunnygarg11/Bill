@@ -28,7 +28,7 @@ const verifyOtp = async (req, res) => {
         );
         msg = {
           isRegister: "Otp verification pending(2)",
-          userData: userData
+          userData: userData[0]
         };
       }
 

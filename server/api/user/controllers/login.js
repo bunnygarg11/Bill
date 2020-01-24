@@ -44,7 +44,7 @@ const login = async (req, res, next) => {
         process.env.SECRET_KEY,
         { expiresIn: 36000 }
       );
-      await pool.query(`UPDATE mbillUsers SET userToken='${userToken}' WHERE email='${personalDetails.email}'OR userName='${userName}'`)
+      await pool.query(`UPDATE mbillUsers SET userToken='${userToken}' WHERE email='${email}'OR userName='${userName}'`)
 
       Services._response(res, { userToken, userData }, "Login Successfully");
     }
