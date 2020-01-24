@@ -20,7 +20,7 @@ const verifyOtp = async (req, res) => {
         );
         msg = {
           isRegister: "Complete(3)",
-          userData: userData
+          userData: userData[0]
         };
       } else {
         await pool.query(

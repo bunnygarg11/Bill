@@ -13,7 +13,6 @@ const { verifyEmail } = require("./controllers/verifyEmail")
 const { verifyOtp } = require("./controllers/verifyOtp")
 const {gstValid} = require("./controllers/gstValidator")
 
-
 router.get("/verifyemail/:token", verifyEmail)
 router.get("/verify/:token", verify)
 router.post("/register", signup)
