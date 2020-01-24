@@ -15,8 +15,8 @@ module.exports={
             return data
           });
     },
-    verifyOTP:function(){
-        sendOtp.verify("8439179082", "5802", function (error, data) {
+    verifyOTP:function(phoneNumber,otp){
+        sendOtp.verify(phoneNumber, otp, function (error, data) {
             
             // if(data.type == 'success') console.log('OTP verified successfully')
             // if(data.type == 'error') console.log('OTP verification failed')

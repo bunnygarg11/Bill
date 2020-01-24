@@ -6,5 +6,5 @@ const { categoryList } = require("./controllers/getCategory")
 const { selectCategory} = require("./controllers/selectCategory")
 
 router.get("/categoryList", userAuth, categoryList)
-router.post("/selectcategory", userAuth, selectCategory)
+router.post("/selectCategory", userAuth, selectCategory)
 module.exports = router;

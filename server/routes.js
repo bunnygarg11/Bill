@@ -19,12 +19,4 @@ module.exports = function (app) {
     app.use('/api/distributor', require('./api/distributor'));
     app.use('/api/category', require('./api/category'));
 
-    // All other routes should redirect to the index.html
-    // app.route('/*')
-    //     .get(function (req, res) {
-    //         if (process.env.NODE_ENV == "development")
-    //             res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
-    //         if (process.env.NODE_ENV == "production")
-    //             res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
-    //     });
 };

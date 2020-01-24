@@ -6,8 +6,9 @@ const changePassword = async (req, res, next) => {
 
     try {
         let { currentPassword, newPassword, confirmPassword } = req.body
-        const user = await pool.query(`SELECT * FROM mbillUsers WHERE id= '${req.id}'`)
+        const user = await pool.query(`SELECT * FROM mbillUsers WHERE userId= '${req.id}'`)
         if (user.length === 0) {
+            
             return Services._handleError(res, "Invalid credentials");
         }
 
@@ -20,7 +21,7 @@ const changePassword = async (req, res, next) => {
 
         newPassword = await bcryptjs.hash(newPassword, 8);
 
-        await pool.query(`UPDATE mbillUsers SET password='${newPassword}' , confirmPassword='${confirmPassword}' WHERE id='${req.id}'`)
+        await pool.query(`UPDATE mbillUsers SET password='${newPassword}' WHERE userId='${req.id}'`)
 
         return Services._response(res, {}, "Password Changed Successfully");
 
