@@ -23,7 +23,7 @@
     "express-validator": "^6.3.1",
     "gstin-validator": "^0.2.5",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mocha": "^7.0.0",
     "mysql": "^2.17.1",
     "nodemailer": "^6.4.2",
