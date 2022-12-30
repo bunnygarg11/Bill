@@ -24,7 +24,7 @@
     "gstin-validator": "^0.2.5",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "mocha": "^7.0.0",
+    "mocha": "^10.2.0",
     "mysql": "^2.17.1",
     "nodemailer": "^6.4.2",
     "nodemon": "^2.0.2",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^7.0.0",
+    "mocha": "^10.2.0",
     "request": "^2.88.0"
   }
 }
